@@ -1,0 +1,15 @@
+---
+# tasks file for gold_config
+- name: NX-OS Devices
+  include_tasks: nxos.yml
+  when: ansible_network_os == "nxos"
+- name: IOS Devices
+  include_tasks: ios.yml
+  when: ansible_network_os == "ios"
+- name: IOS XR Devices
+  include_tasks: iosxr.yml
+  when: ansible_network_os == "iosxr"
+- name: ASA Devices
+  include_tasks: asa.yml
+  when: ansible_network_os == "asa"
+
