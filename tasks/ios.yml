@@ -31,7 +31,7 @@
   when: ansible_network_os == 'ios'
   loop: 
     - line vty 0 15
-    - line con
+    - line con 0
   cisco.ios.ios_config:
     lines:
       - exec-timeout 120
