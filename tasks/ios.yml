@@ -30,11 +30,12 @@
 - name: Configure VTY and console
   when: ansible_network_os == 'ios'
   loop: 
-    - line vty 0 15
+    - line vty 0 4
+    - line vty 5 15
     - line con 0
   cisco.ios.ios_config:
     lines:
-      - exec-timeout 120
+      - exec-timeout 120 0
     parents: "{{ item }}"
 
 
