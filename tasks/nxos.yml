@@ -9,7 +9,6 @@
   cisco.nxos.nxos_system:
     domain_name: "{{ domain_name }}"
     domain_lookup: no
-    domain_search: "{{ domain_search }}"
 
 ############################################################
 #  Feature Configuration
