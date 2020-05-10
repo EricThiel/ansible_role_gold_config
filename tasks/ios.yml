@@ -11,6 +11,33 @@
     lookup_enabled: no
     domain_search: "{{ domain_search }}"
 
+
+#############################################################
+# NTP Configuration
+#############################################################
+
+- name: Set NTP
+  when: ansible_network_os == 'ios'
+  loop: "{{ ntp_servers }}"
+  cisco.ios.ios_config:
+    lines:
+      - ntp server {{ item }}
+
+
+#############################################################
+# VTY Configuration
+#############################################################
+- name: Configure VTY and console
+  when: ansible_network_os == 'ios'
+  loop: 
+    - line vty 0 15
+    - line con
+  cisco.ios.ios_config:
+    lines:
+      - exec-timeout 120
+    parents: "{{ item }}"
+
+
 #############################################################
 # Catchall Configuration
 #############################################################
@@ -23,6 +50,11 @@
       - clock summer-time PDT recurring
       - service timestamps debug datetime msec localtime show-timezone
       - service timestamps log datetime msec localtime show-timezone
-
-
-
+      - netconf-yang
+      - restconf
+      - spanning-tree extend system-id
+      - ip http server
+      - ip http authentication local
+      - ip http secure-server
+      - ip ssh version 2
+    #backup: yes

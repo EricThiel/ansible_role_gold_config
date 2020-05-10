@@ -16,44 +16,28 @@ A description of the settable variables for this role should go here, including 
 Example Variable File
 ------------
 ```
-siteid: 19
-tenants:
-  - tenant_name: finance
-    tenant_num: 11
-    segments:
-      - vlan_num: 1
-        name: "{{siteid}}-finance-data"
-        subnet: "10.{{siteid}}.111.0/24"
-      - vlan_num: 2
-        name: "{{siteid}}-finance-voice"
-        subnet: "10.{{siteid}}.112.0/24"
-  - tenant_name: engineering
-    tenant_num: 12
-    segments:
-      - vlan_num: 1
-        name: "{{siteid}}-engineering-data"
-        subnet: "10.{{siteid}}.121.0/24"
-      - vlan_num: 2
-        name: "{{siteid}}-engineering-voice"
-        subnet: "10.{{siteid}}.122.0/24"
-  - tenant_name: hr
-    tenant_num: 13
-    segments:
-      - vlan_num: 1
-        name: "{{siteid}}-hr-data"
-        subnet: "10.{{siteid}}.131.0/24"
-      - vlan_num: 2
-        name: "{{siteid}}-hr-voice"
-        subnet: "10.{{siteid}}.132.0/24"
-  - tenant_name: facilities
-    tenant_num: 14
-    segments:
-      - vlan_num: 1
-        name: "{{siteid}}-facilities-data"
-        subnet: "10.{{siteid}}.141.0/24"
-      - vlan_num: 2
-        name: "{{siteid}}-facilities-voice"
-        subnet: "10.{{siteid}}.142.0/24"
+ansible_connection: network_cli
+ansible_user: "{{username}}"
+ansible_ssh_pass: "{{password}}"
+ansible_network_os: nxos
+
+checkmode: yes
+
+domain_name: virl.info 
+domain_search: "{{domain_name}}"
+
+ntp_servers: 
+  - 8.8.8.8
+  - 10.1.1.1
+log_servers:
+  - 10.1.1.1
+  - 10.1.1.2
+
+features:
+  - nxapi
+  - restconf
+  - netconf
+
 ```
 
 Dependencies
@@ -67,12 +51,12 @@ Example Playbook
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
 ---
-- name: Use roles to create VRFs
-  hosts: nx
-  gather_facts: false
+- name: Check if devices match the Gold config
+  hosts: lab
+  gather_facts: no
 
-  roles:
-    - network-vrf
+  roles: 
+    - gold_config
 
 
 License
