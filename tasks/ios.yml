@@ -9,8 +9,7 @@
   cisco.ios.ios_system:
     domain_name: "{{ domain_name }}"
     lookup_enabled: no
-    domain_search: "{{ domain_search }}"
-
+    
 
 #############################################################
 # NTP Configuration
