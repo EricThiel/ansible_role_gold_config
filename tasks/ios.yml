@@ -9,7 +9,7 @@
   ios_config:
     lines:
       - logging enable
-      - logging size 1100
+      - logging size 1000
       - hidekeys
     parents:
       - archive
