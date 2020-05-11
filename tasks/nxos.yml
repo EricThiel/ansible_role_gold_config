@@ -5,7 +5,7 @@
 ############################################################
 
 - name: System settings
-  check_mode: "{{ checkmode }}"
+  #check_mode: "{{ checkmode }}"
   cisco.nxos.nxos_system:
     domain_name: "{{ domain_name }}"
     domain_lookup: no
@@ -15,7 +15,7 @@
 ############################################################
 
 - name: Feature settings
-  check_mode: "{{ checkmode }}"
+  #check_mode: "{{ checkmode }}"
   loop: "{{ features }}"
   cisco.nxos.nxos_feature:
     feature: "{{ item }}"
@@ -25,7 +25,7 @@
 #############################################################
 
 - name: Set NTP
-  check_mode: "{{ checkmode }}"
+  #check_mode: "{{ checkmode }}"
   loop: "{{ ntp_servers }}"
   cisco.nxos.nxos_config:
     lines:
@@ -36,7 +36,7 @@
 #############################################################
 
 - name: Check catchall config items
-  check_mode: "{{ checkmode }}"
+  #check_mode: "{{ checkmode }}"
   cisco.nxos.nxos_config:
     lines:
       - clock timezone PST -8 0
