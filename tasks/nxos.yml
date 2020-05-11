@@ -29,7 +29,7 @@
   loop: "{{ ntp_servers }}"
   cisco.nxos.nxos_config:
     lines:
-      - ntp server {{ item }}
+      - ntp server {{ item }} use-vrf default
 
 #############################################################
 # Catchall Configuration
@@ -40,5 +40,5 @@
   cisco.nxos.nxos_config:
     lines:
       - clock timezone PST -8 0
-      - clock summer-time PDT
+      - clock summer-time PDT 2 Sun Mar 02:00 1 Sun Nov 02:00 60
       - logging timestamp milliseconds
