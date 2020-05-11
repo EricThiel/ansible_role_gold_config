@@ -25,7 +25,7 @@
 #############################################################
 
 - name: Set NTP
-  when: ansible_network_os == 'ios'
+  check_mode: "{{ checkmode }}"
   loop: "{{ ntp_servers }}"
   cisco.nxos.nxos_config:
     lines:
