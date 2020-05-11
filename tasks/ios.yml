@@ -5,6 +5,7 @@
 ############################################################
 
 - name: Archive logging config
+  check_mode: "{{ checkmode }}"
   ios_config:
     lines:
       - logging enable
@@ -22,6 +23,7 @@
 ############################################################
 
 - name: Create local users
+  check_mode: "{{ checkmode }}"
   ios_user:
     aggregate: "{{local_users_full}}"
     state: present
