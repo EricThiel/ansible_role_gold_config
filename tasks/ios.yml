@@ -16,7 +16,7 @@
 #############################################################
 
 - name: Set NTP
-  when: ansible_network_os == 'ios'
+  check_mode: "{{ checkmode }}"
   loop: "{{ ntp_servers }}"
   cisco.ios.ios_config:
     lines:
@@ -27,7 +27,7 @@
 # VTY Configuration
 #############################################################
 - name: Configure VTY and console
-  when: ansible_network_os == 'ios'
+  check_mode: "{{ checkmode }}"
   loop: 
     - line vty 0 4
     - line vty 5 15
