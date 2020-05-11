@@ -1,6 +1,35 @@
 ---
 
 ############################################################
+#  Enble Config Logging
+############################################################
+
+- name: Archive logging config
+  ios_config:
+    lines:
+      - logging enable
+      - logging size 1100
+      - hidekeys
+    parents:
+      - archive
+      - log config
+    defaults: no
+  tags: archive
+
+
+############################################################
+#  Confirm only authorized system users exist
+############################################################
+
+- name: Create local users
+  ios_user:
+    aggregate: "{{local_users_full}}"
+    state: present
+    update_password: on_create
+    purge: yes
+
+
+############################################################
 #  System Configuration
 ############################################################
 
