@@ -5,7 +5,7 @@
 ############################################################
 
 - name: Archive logging config
-  check_mode: "{{ checkmode }}"
+  #check_mode: "{{ checkmode }}"
   ios_config:
     lines:
       - logging enable
@@ -23,7 +23,7 @@
 ############################################################
 
 - name: Create local users
-  check_mode: "{{ checkmode }}"
+  #check_mode: "{{ checkmode }}"
   ios_user:
     aggregate: "{{local_users_full}}"
     state: present
@@ -36,7 +36,7 @@
 ############################################################
 
 - name: System settings
-  check_mode: "{{ checkmode }}"
+  #check_mode: "{{ checkmode }}"
   cisco.ios.ios_system:
     domain_name: "{{ domain_name }}"
     lookup_enabled: no
@@ -47,7 +47,7 @@
 #############################################################
 
 - name: Set NTP
-  check_mode: "{{ checkmode }}"
+  #check_mode: "{{ checkmode }}"
   loop: "{{ ntp_servers }}"
   cisco.ios.ios_config:
     lines:
@@ -58,7 +58,7 @@
 # VTY Configuration
 #############################################################
 - name: Configure VTY and console
-  check_mode: "{{ checkmode }}"
+  #check_mode: "{{ checkmode }}"
   loop: 
     - line vty 0 4
     - line vty 5 15
@@ -74,7 +74,7 @@
 #############################################################
 
 - name: Check catchall config items
-  check_mode: "{{ checkmode }}"
+  #check_mode: "{{ checkmode }}"
   cisco.ios.ios_config:
     lines:
       - clock timezone PST -8 0
