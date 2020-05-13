@@ -50,6 +50,7 @@ Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
+```
 ---
 - name: Check if devices match the Gold config
   hosts: lab
@@ -57,7 +58,7 @@ Including an example of how to use your role (for instance, with variables passe
 
   roles: 
     - gold_config
-
+```
 
 License
 -------
